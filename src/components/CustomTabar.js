@@ -1,47 +1,79 @@
-// src/components/CustomTabBar.js
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const tabData = [
-  { name: 'Home', icon: require('../assets/svgs/HomeIcon') },
-  { name: 'Missed', icon: require('../assets/svgs/ActivityIcon')},
-  { name: 'Control', icon: require('../assets/svgs/SettingIcon') },
-  { name: 'Accounts', icon: require('../assets/svgs/ProfileIcon') },
-];
+import HomeIcon from '../assets/svgs/HomeIcon';
+import MissedIcon from '../assets/svgs/ActivityIcon';
+import ControlIcon from '../assets/svgs/SettingIcon';
+import ProfileIcon from '../assets/svgs/ProfileIcon';
+
+const icons = {
+  Home: <HomeIcon />,
+  Missed: <MissedIcon />,
+  Control: <ControlIcon />,
+  Accounts: <ProfileIcon />,
+};
+
+const labels = {
+  Home: '',
+  Missed: '',
+  Control: 'Control',
+  Accounts: '',
+};
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   const insets = useSafeAreaInsets();
+  const scheme = useColorScheme();
+  const isDark = scheme === 'dark';
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+    <View style={[styles.wrapper, {
+      backgroundColor: isDark
+        ? 'rgba(85, 85, 85, 0.12)'
+        : 'rgba(200, 200, 200, 0.35)',
+      paddingBottom: insets.bottom + 10,
+    }]}>
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
-        const { options } = descriptors[route.key];
-        const label = options.tabBarLabel ?? route.name;
+        const label = labels[route.name] || route.name;
+        const Icon = icons[route.name];
 
         const onPress = () => {
-          if (!isFocused) navigation.navigate(route.name);
+          if (!isFocused) {
+            navigation.navigate(route.name);
+          }
         };
 
         return (
           <TouchableOpacity
             key={route.key}
-            accessibilityRole="button"
             onPress={onPress}
-            style={[styles.tabButton, isFocused && styles.activeTabButton]}
+            style={isFocused ? styles.activeTab : styles.inactiveTab}
+            activeOpacity={0.8}
           >
             {isFocused ? (
-              <View style={styles.activeInner}>
-                {/* Use your SVG/icon components instead of emoji */}
-                <Text style={styles.iconText}>⚙️</Text>
-                <Text style={styles.label}>{label}</Text>
+              <View style={styles.activeContent}>
+                {React.cloneElement(Icon, {
+                  width: 22,
+                  height: 22,
+                  color: '#FFA43A',
+                })}
+                {label !== '' && (
+                  <Text style={styles.activeLabel}>{label}</Text>
+                )}
               </View>
             ) : (
-              <View style={styles.iconOnly}>
-                {/* Use your SVG/icon components instead of emoji */}
-                <Text style={styles.iconOnlyText}>⚙️</Text>
-              </View>
+              React.cloneElement(Icon, {
+                width: 22,
+                height: 22,
+                color: isDark ? '#fff' : '#000',
+              })
             )}
           </TouchableOpacity>
         );
@@ -51,59 +83,53 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(85, 85, 85, 0.12)',
-    margin: 16,
+    justifyContent: 'space-around',
     borderRadius: 42,
+    marginHorizontal: 16,
+    marginTop: 10,
     paddingVertical: 10,
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'center',
+    width: '90%',
     shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 65,
-    shadowOffset: { width: 0, height: 4 },
     elevation: 10,
   },
-  tabButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  iconOnly: {
-    width: 22,
-    height: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  iconOnlyText: {
-    fontSize: 20,
-    color: 'white',
-  },
-  activeTabButton: {
+  activeTab: {
     width: 110,
     height: 47,
     borderRadius: 42,
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.4,
     shadowRadius: 65,
     shadowOffset: { width: 0, height: 4 },
     elevation: 12,
   },
-  activeInner: {
+  activeContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
     gap: 6,
   },
-  iconText: {
-    fontSize: 20,
-    color: '#FFA43A',
-  },
-  label: {
+  activeLabel: {
     color: '#FFA43A',
     fontWeight: '600',
     fontSize: 14,
+  },
+  inactiveTab: {
+    width: 22,
+    height: 22,
+    aspectRatio: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
