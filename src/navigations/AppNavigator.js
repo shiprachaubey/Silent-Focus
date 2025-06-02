@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { CardStyleInterpolators } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LogoScreen from '../screens/LogoScreen';
 import WelcomeScreen1 from '../screens/Welcome1Screen';
@@ -14,7 +15,13 @@ const Stack = createNativeStackNavigator();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Logo">
+    <Stack.Navigator
+  initialRouteName="Logo"
+  screenOptions={{
+    headerShown: false,
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // 👈 add this line
+  }}
+>
     
   <Stack.Screen name="Logo" component={LogoScreen} options={{ headerShown: false }} />
   <Stack.Screen name="Welcome1" component={WelcomeScreen1} options={{ headerShown: false }} />

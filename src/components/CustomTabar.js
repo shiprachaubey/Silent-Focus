@@ -122,31 +122,8 @@ absoluteContainer: {
   shadowRadius: 65,
 },
 
-//   activeTab: {
-//     width: 110,
-//     height: 47,
-//     borderRadius: 42,
-//     backgroundColor: 'rgba(0, 0, 0, 0.65)',
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   inactiveTab: {
-//     width: 22,
-//     height: 22,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   activeContent: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   activeLabel: {
-//     color: '#FFA43A',
-//     fontWeight: '600',
-//     fontSize: 14,
-//     marginLeft: 6,
-//   },
+
+
 activeTab: {
   width: 110,
   height: 47,
