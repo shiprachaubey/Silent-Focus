@@ -51,7 +51,7 @@
 // export default MainTabs;
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CustomTabBar from './components/CustomTabBar';
+import CustomTabBar from './components/CustomTabar';
 
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ActivityScreen';

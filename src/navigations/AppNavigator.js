@@ -22,7 +22,7 @@ const AppNavigator = () => {
  <Stack.Screen name="Welcome3" component={WelcomeScreen3} options={{ headerShown: false }} />
  <Stack.Screen name="Permission" component={PermissionScreen} options={{ headerShown: false }} />
   <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-   <Stack.Screen name="MainTabs" component={MainTabs} />
+   <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
 </Stack.Navigator>
 
     </NavigationContainer>
