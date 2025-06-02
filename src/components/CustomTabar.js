@@ -107,20 +107,21 @@ absoluteContainer: {
   zIndex: -1,
 },
 
-  tabBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'rgba(85, 85, 85, 0.12)',
-    borderRadius: 50,
-    width: '90%',
-     height: 75, 
-    paddingVertical: 10,
-    elevation: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 65,
-  },
+ tabBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',      // ✅ centers items vertically
+  backgroundColor: 'rgba(85, 85, 85, 0.12)',
+  borderRadius: 50,
+  width: '90%',
+  height: 75,                // your defined height
+  elevation: 15,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.4,
+  shadowRadius: 65,
+},
+
 //   activeTab: {
 //     width: 110,
 //     height: 47,
@@ -151,17 +152,21 @@ activeTab: {
   height: 47,
   borderRadius: 42,
   backgroundColor: 'rgba(0, 0, 0, 0.65)',
-  justifyContent: 'center',
-  alignItems: 'center',
   flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: 10,
 },
 
+
 inactiveTab: {
-  height: 47, // match active height
+  width: 22,
+  height: 47, // match vertical space of active tab
   justifyContent: 'center',
   alignItems: 'center',
-  paddingHorizontal: 10,
+    marginTop: 10,
 },
+
 
 iconRow: {
   flexDirection: 'row',
