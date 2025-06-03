@@ -11,9 +11,7 @@ import {
   ActivityIndicator,
   Platform,
 } from 'react-native';
-import SilentIcon from '../assets/svgs/Silent';
-//import SoundIcon from '../assets/svgs/SoundIcon'; // You need to create this similarly
-import SilentModeCircle from '../components/SilentModeCircle';
+
 import ModernSilentButton from '../components/ModernSilentButton';
 import ScheduleCard from '../components/ScheduleCard';
 
