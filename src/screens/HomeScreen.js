@@ -52,7 +52,13 @@
 //         </View>
 //       </View>
 //     </View>
-//   );
+   
+//   // <View style={{ flex: 1, backgroundColor: 'red' }}>
+//   //   <Text>Hello</Text>
+//   // </View>
+// );
+
+
 // };
 
 // const styles = StyleSheet.create({
