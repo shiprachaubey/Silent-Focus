@@ -673,6 +673,296 @@
 // export default ProfileScreen;
 
 
+// import React, { useState } from 'react';
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   TouchableOpacity,
+//   ScrollView,
+//   Dimensions,
+//   Modal,
+//   Pressable,
+  
+// } from 'react-native';
+// import LinearGradient from 'react-native-linear-gradient';
+// import LogoutIcon from '../assets/svgs/Logout';
+// import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+// const { width } = Dimensions.get('window');
+
+// const calendarOptions = ['Google Calendar', 'Outlook Calendar'];
+
+// const ProfileScreen = () => {
+//   const [calendarProvider, setCalendarProvider] = useState(null);
+//   const [isCalendarSynced, setIsCalendarSynced] = useState(false);
+//   const [modalVisible, setModalVisible] = useState(false);
+
+//   const handleSelectProvider = (provider) => {
+//     setCalendarProvider(provider);
+//     setIsCalendarSynced(true);
+//     setModalVisible(false);
+//   };
+
+//   const handleDisconnectCalendar = () => {
+//     setIsCalendarSynced(false);
+//     setCalendarProvider(null);
+//   };
+
+//   return (
+//   <SafeAreaView style={{ flex: 1, backgroundColor: '#111111' }}>
+
+//     <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+//       <Text style={styles.header}>Account Center</Text>
+
+//       {/* Account Info */}
+//       <Section title="Account & Profile" height={125}>
+//         <Field label="Name" value="Ayan Hazra" />
+//         <Separator />
+//         <Field label="Email" value="jesus722481@gmail.com" />
+//         <Separator />
+//         <Field label="Phone" value="+  Add Phone Number" color="#D6721E" />
+//       </Section>
+
+//       {/* Calendar Settings */}
+//       <Section title="Calender Settings" height={isCalendarSynced ? 200 : 180}>
+//         <Field
+//           label="Calender Sync"
+//           value={isCalendarSynced ? 'Active' : 'Inactive'}
+//           color={isCalendarSynced ? '#34A853' : '#999'}
+//         />
+//         <Separator />
+//         <Field label="Event Filters" value="Modify Filters" color="#D6721E" />
+//         <Separator />
+
+//         {isCalendarSynced ? (
+//           <>
+//             <Text style={styles.providerText}>{calendarProvider}</Text>
+//             <TouchableOpacity onPress={handleDisconnectCalendar}>
+//               <Text style={styles.disconnect}>Disconnect Calender</Text>
+//             </TouchableOpacity>
+//           </>
+//         ) : (
+//           <TouchableOpacity onPress={() => setModalVisible(true)}>
+//             <Text style={styles.syncNow}>+ Sync a Calendar</Text>
+//           </TouchableOpacity>
+//         )}
+//       </Section>
+
+//       {/* Privacy */}
+//       <Section title="Privacy & Permissions" height={109}>
+//         <Field
+//           label="Active Permissions"
+//           value="Location"
+//           color="#aaa"
+//         />
+//         <Separator />
+//         <Field label="Change Password" />
+//       </Section>
+
+//       {/* Legal */}
+//       <Section title="Legal & Data Controls" height={109}>
+//         <Field label="Terms of Service" />
+//         <Separator />
+//         <Field label="Privacy Policy" />
+//       </Section>
+
+//       {/* Logout */}
+//       <View style={styles.logoutContainer}>
+//         <TouchableOpacity activeOpacity={0.9}>
+//           <LinearGradient
+//             colors={['#B87333', '#B06E31', '#523317']}
+//             start={{ x: 0, y: 0.5 }}
+//             end={{ x: 1, y: 0.5 }}
+//             style={styles.logoutBtn}
+//           >
+//             <LogoutIcon width={16} height={16} />
+//             <Text style={styles.logoutText}>Logout</Text>
+//           </LinearGradient>
+//         </TouchableOpacity>
+//       </View>
+
+//       {/* Sync Modal */}
+//       <Modal transparent animationType="fade" visible={modalVisible}>
+//         <Pressable style={styles.modalBackdrop} onPress={() => setModalVisible(false)}>
+//           <View style={styles.modalBox}>
+//             <Text style={styles.modalTitle}>Choose Calendar Provider</Text>
+//             {calendarOptions.map((opt) => (
+//               <TouchableOpacity
+//                 key={opt}
+//                 onPress={() => handleSelectProvider(opt)}
+//                 style={styles.optionBtn}
+//               >
+//                 <Text style={styles.optionText}>{opt}</Text>
+//               </TouchableOpacity>
+//             ))}
+//           </View>
+//         </Pressable>
+//       </Modal>
+//     </ScrollView>
+//     </SafeAreaView>
+//   );
+// };
+
+// // Reusable components
+// const Section = ({ title, children, height }) => (
+//   <View style={styles.section}>
+//     <Text style={styles.sectionTitle}>{title}</Text>
+//     <View style={[styles.sectionBox, { height }]}>{children}</View>
+//   </View>
+// );
+
+// const Field = ({ label, value, color }) => (
+//   <View style={styles.fieldRow}>
+//     <View style={styles.rowHeader}>
+//       <Text style={styles.label}>{label}</Text>
+//       <Text style={[styles.value, { color: color || '#999' }]}>{value}</Text>
+//     </View>
+//   </View>
+// );
+
+// const Separator = () => <View style={styles.separator} />;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#111111',
+//     paddingHorizontal: 20,
+//     fontFamily: 'Roboto',
+//   },
+// scrollContent: {
+//   paddingBottom: 140, // ⬅️ increased from 100 to 140 or more
+//   paddingTop: 30,
+// },
+
+//   header: {
+//     fontSize: 20,
+//     fontWeight: '700',
+//     color: '#D6721E',
+//     textAlign: 'center',
+//     marginBottom: 20,
+//   },
+//   section: {
+//     marginBottom: 25,
+//   },
+//   sectionTitle: {
+//     fontSize: 13,
+//     fontWeight: '600',
+//     color: '#ccc',
+//     marginBottom: 10,
+//   },
+//   sectionBox: {
+//     width: '100%',
+//     maxWidth: 335,
+//     alignSelf: 'center',
+//     backgroundColor: 'rgba(85, 85, 85, 0.12)',
+//     borderRadius: 17,
+//     padding: 16,
+//     justifyContent: 'center',
+//   },
+//   fieldRow: {
+//     marginBottom: 10,
+//   },
+//   rowHeader: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//   },
+//   label: {
+//     fontSize: 14,
+//     fontWeight: '500',
+//     color: '#eee',
+//   },
+//   value: {
+//     fontSize: 14,
+//     fontWeight: '600',
+//   },
+//   separator: {
+//     height: 1,
+//     backgroundColor: 'rgba(85, 85, 85, 0.35)',
+//     shadowColor: '#000',
+//     shadowOffset: { width: 0, height: 4 },
+//     shadowOpacity: 0.25,
+//     shadowRadius: 4,
+//     marginVertical: 4,
+//   },
+//   disconnect: {
+//     color: '#D6721E',
+//     textAlign: 'center',
+//     fontSize: 13,
+//     fontWeight: '600',
+//     marginTop: 6,
+//   },
+//   providerText: {
+//     color: '#aaa',
+//     textAlign: 'center',
+//     fontSize: 13,
+//     fontWeight: '500',
+//   },
+//   syncNow: {
+//     color: '#D6721E',
+//     textAlign: 'center',
+//     fontSize: 13,
+//     fontWeight: '600',
+//     marginTop: 6,
+//   },
+//   logoutContainer: {
+//     alignItems: 'flex-end',
+//     justifyContent: 'center',
+//     marginTop: 10,
+//   },
+//   logoutBtn: {
+//     width: 151,
+//     height: 47,
+//     borderRadius: 42,
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     shadowColor: '#000',
+//     shadowOffset: { width: 0, height: 4 },
+//     shadowOpacity: 0.4,
+//     shadowRadius: 65,
+//   },
+//   logoutText: {
+//     color: '#fff',
+//     fontSize: 15,
+//     fontWeight: '600',
+//     marginLeft: 6,
+//   },
+//   modalBackdrop: {
+//     flex: 1,
+//     backgroundColor: 'rgba(0,0,0,0.5)',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   modalBox: {
+//     width: '80%',
+//     backgroundColor: '#222',
+//     borderRadius: 12,
+//     padding: 20,
+//   },
+//   modalTitle: {
+//     color: '#fff',
+//     fontSize: 16,
+//     fontWeight: '700',
+//     marginBottom: 12,
+//     textAlign: 'center',
+//   },
+//   optionBtn: {
+//     paddingVertical: 10,
+//     borderBottomWidth: 1,
+//     borderBottomColor: '#444',
+//   },
+//   optionText: {
+//     color: '#D6721E',
+//     fontSize: 14,
+//     textAlign: 'center',
+//   },
+// });
+
+// export default ProfileScreen;
+
+
 import React, { useState } from 'react';
 import {
   View,
@@ -683,12 +973,11 @@ import {
   Dimensions,
   Modal,
   Pressable,
-  
+  useColorScheme,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LogoutIcon from '../assets/svgs/Logout';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 const { width } = Dimensions.get('window');
 
@@ -698,6 +987,15 @@ const ProfileScreen = () => {
   const [calendarProvider, setCalendarProvider] = useState(null);
   const [isCalendarSynced, setIsCalendarSynced] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
+  const background = isDark ? '#111' : '#fff';
+  const card = isDark ? 'rgba(85,85,85,0.12)' : '#f2f2f2';
+  const text = isDark ? '#eee' : '#111';
+  const mutedText = isDark ? '#aaa' : '#444';
+  const divider = isDark ? 'rgba(85,85,85,0.35)' : '#ccc';
 
   const handleSelectProvider = (provider) => {
     setCalendarProvider(provider);
@@ -711,131 +1009,149 @@ const ProfileScreen = () => {
   };
 
   return (
-  <SafeAreaView style={{ flex: 1, backgroundColor: '#111111' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: background }}>
+      <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.header}>Account Center</Text>
 
-    <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
-      <Text style={styles.header}>Account Center</Text>
+        {/* Account Info */}
+        <Section title="Profile & Account Info" height={125} cardColor={card}>
+          <Field label="Name" value="Ayan Hazra" textColor={text} />
+          <Separator divider={divider} />
+          <Field label="Email" value="jesus722481@gmail.com" textColor={text} />
+          <Separator divider={divider} />
+          <Field label="Phone" value="+  Add Phone Number" color="#D6721E" />
+        </Section>
 
-      {/* Account Info */}
-      <Section title="Account & Profile" height={125}>
-        <Field label="Name" value="Ayan Hazra" />
-        <Separator />
-        <Field label="Email" value="jesus722481@gmail.com" />
-        <Separator />
-        <Field label="Phone" value="+  Add Phone Number" color="#D6721E" />
-      </Section>
+        {/* Calendar Settings */}
+        <Section title="Calender Settings" height={isCalendarSynced ? 200 : 180} cardColor={card}>
+          <Field
+            label="Calender Sync"
+            value={isCalendarSynced ? 'Active' : 'Inactive'}
+            color={isCalendarSynced ? '#34A853' : '#999'}
+          />
+          <Separator divider={divider} />
+          <Field label="Event Filters" value="Modify Filters" color="#D6721E" />
+          <Separator divider={divider} />
 
-      {/* Calendar Settings */}
-      <Section title="Calender Settings" height={isCalendarSynced ? 200 : 180}>
-        <Field
-          label="Calender Sync"
-          value={isCalendarSynced ? 'Active' : 'Inactive'}
-          color={isCalendarSynced ? '#34A853' : '#999'}
-        />
-        <Separator />
-        <Field label="Event Filters" value="Modify Filters" color="#D6721E" />
-        <Separator />
-
-        {isCalendarSynced ? (
-          <>
-            <Text style={styles.providerText}>{calendarProvider}</Text>
-            <TouchableOpacity onPress={handleDisconnectCalendar}>
-              <Text style={styles.disconnect}>Disconnect Calender</Text>
-            </TouchableOpacity>
-          </>
-        ) : (
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Text style={styles.syncNow}>+ Sync a Calendar</Text>
-          </TouchableOpacity>
-        )}
-      </Section>
-
-      {/* Privacy */}
-      <Section title="Privacy & Permissions" height={109}>
-        <Field
-          label="Active Permissions"
-          value="Location"
-          color="#aaa"
-        />
-        <Separator />
-        <Field label="Change Password" />
-      </Section>
-
-      {/* Legal */}
-      <Section title="Legal & Data Controls" height={109}>
-        <Field label="Terms of Service" />
-        <Separator />
-        <Field label="Privacy Policy" />
-      </Section>
-
-      {/* Logout */}
-      <View style={styles.logoutContainer}>
-        <TouchableOpacity activeOpacity={0.9}>
-          <LinearGradient
-            colors={['#B87333', '#B06E31', '#523317']}
-            start={{ x: 0, y: 0.5 }}
-            end={{ x: 1, y: 0.5 }}
-            style={styles.logoutBtn}
-          >
-            <LogoutIcon width={16} height={16} />
-            <Text style={styles.logoutText}>Logout</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
-
-      {/* Sync Modal */}
-      <Modal transparent animationType="fade" visible={modalVisible}>
-        <Pressable style={styles.modalBackdrop} onPress={() => setModalVisible(false)}>
-          <View style={styles.modalBox}>
-            <Text style={styles.modalTitle}>Choose Calendar Provider</Text>
-            {calendarOptions.map((opt) => (
-              <TouchableOpacity
-                key={opt}
-                onPress={() => handleSelectProvider(opt)}
-                style={styles.optionBtn}
-              >
-                <Text style={styles.optionText}>{opt}</Text>
+          {isCalendarSynced ? (
+            <>
+              <Text style={[styles.providerText, { color: mutedText }]}>{calendarProvider}</Text>
+              <TouchableOpacity onPress={handleDisconnectCalendar}>
+                <Text style={styles.disconnect}>Disconnect Calender</Text>
               </TouchableOpacity>
-            ))}
-          </View>
-        </Pressable>
-      </Modal>
-    </ScrollView>
+            </>
+          ) : (
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <Text style={styles.syncNow}>+ Sync a Calendar</Text>
+            </TouchableOpacity>
+          )}
+        </Section>
+
+        {/* Privacy */}
+        <Section title="Privacy & Permissions" height={109} cardColor={card}>
+          <Field
+            label="Active Permissions"
+            value="Location"            color={mutedText}
+          />
+          <Separator divider={divider} />
+          <Field label="Add or Change Password" textColor={text} />
+        </Section>
+
+        {/* Legal */}
+        <Section title="Legal & Data Controls" height={109} cardColor={card}>
+          <Field label="Terms of Service" textColor={text} />
+          <Separator divider={divider} />
+          <Field label="Privacy Policy" textColor={text} />
+        </Section>
+
+        {/* Logout */}
+        <View style={styles.logoutContainer}>
+          <TouchableOpacity activeOpacity={0.9}>
+            <LinearGradient
+              colors={['#B87333', '#B06E31', '#523317']}
+              start={{ x: 0, y: 0.5 }}
+              end={{ x: 1, y: 0.5 }}
+              style={styles.logoutBtn}
+            >
+              <LogoutIcon width={16} height={16} />
+              <Text style={styles.logoutText}>Logout</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+
+        {/* Sync Modal */}
+        <Modal transparent animationType="fade" visible={modalVisible}>
+          <Pressable style={styles.modalBackdrop} onPress={() => setModalVisible(false)}>
+            <View style={[styles.modalBox, { backgroundColor: isDark ? '#222' : '#fff' }]}>
+              <Text style={[styles.modalTitle, { color: text }]}>Choose Calendar Provider</Text>
+              {calendarOptions.map((opt) => (
+                <TouchableOpacity
+                  key={opt}
+                  onPress={() => handleSelectProvider(opt)}
+                  style={styles.optionBtn}
+                >
+                  <Text style={styles.optionText}>{opt}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </Pressable>
+        </Modal>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 // Reusable components
-const Section = ({ title, children, height }) => (
+const Section = ({ title, children, height, cardColor }) => (
   <View style={styles.section}>
     <Text style={styles.sectionTitle}>{title}</Text>
-    <View style={[styles.sectionBox, { height }]}>{children}</View>
+    <View style={[styles.sectionBox, { height, backgroundColor: cardColor }]}>{children}</View>
   </View>
 );
 
-const Field = ({ label, value, color }) => (
-  <View style={styles.fieldRow}>
-    <View style={styles.rowHeader}>
-      <Text style={styles.label}>{label}</Text>
-      <Text style={[styles.value, { color: color || '#999' }]}>{value}</Text>
+const Field = ({ label, value, color, textColor }) => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const defaultLabelColor = isDark ? '#eee' : '#333';
+  const defaultValueColor = isDark ? '#aaa' : '#111';
+
+  return (
+    <View style={styles.fieldRow}>
+      <View style={styles.rowHeader}>
+        <Text style={[styles.label, { color: textColor || defaultLabelColor }]}>{label}</Text>
+        <Text style={[styles.value, { color: color || textColor || defaultValueColor }]}>{value}</Text>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
-const Separator = () => <View style={styles.separator} />;
+
+const Separator = ({ divider }) => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  return (
+    <View
+      style={[
+        styles.separator,
+        {
+          backgroundColor: divider || (isDark ? 'rgba(85,85,85,0.35)' : '#bbb'),
+        },
+      ]}
+    />
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111111',
+    paddingTop: 20,
     paddingHorizontal: 20,
-    fontFamily: 'Roboto',
   },
-scrollContent: {
-  paddingBottom: 140, // ⬅️ increased from 100 to 140 or more
-  paddingTop: 30,
-},
-
+  scrollContent: {
+    paddingBottom: 140,
+    paddingTop: 30,
+  },
   header: {
     fontSize: 20,
     fontWeight: '700',
@@ -849,14 +1165,13 @@ scrollContent: {
   sectionTitle: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#ccc',
+    color: '#888',
     marginBottom: 10,
   },
   sectionBox: {
     width: '100%',
     maxWidth: 335,
     alignSelf: 'center',
-    backgroundColor: 'rgba(85, 85, 85, 0.12)',
     borderRadius: 17,
     padding: 16,
     justifyContent: 'center',
@@ -871,7 +1186,6 @@ scrollContent: {
   label: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#eee',
   },
   value: {
     fontSize: 14,
@@ -879,11 +1193,6 @@ scrollContent: {
   },
   separator: {
     height: 1,
-    backgroundColor: 'rgba(85, 85, 85, 0.35)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
     marginVertical: 4,
   },
   disconnect: {
@@ -894,10 +1203,10 @@ scrollContent: {
     marginTop: 6,
   },
   providerText: {
-    color: '#aaa',
     textAlign: 'center',
     fontSize: 13,
     fontWeight: '500',
+    marginTop: 2,
   },
   syncNow: {
     color: '#D6721E',
@@ -937,12 +1246,10 @@ scrollContent: {
   },
   modalBox: {
     width: '80%',
-    backgroundColor: '#222',
     borderRadius: 12,
     padding: 20,
   },
   modalTitle: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: '700',
     marginBottom: 12,
