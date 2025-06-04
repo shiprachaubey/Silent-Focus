@@ -35,7 +35,7 @@ const SettingsScreen = () => {
   const isDark = colorScheme === 'dark';
 
   const bg = isDark ? '#111111' : '#FFFFFF';
-  const card = isDark ? 'rgba(85, 85, 85, 0.12)' : '#F2F2F2';
+  const card = isDark ? 'rgba(85, 85, 85, 0.12)' : '#2E3A3E14';
   const text = isDark ? '#FFFFFF' : '#1A1A1A';
   const mutedText = isDark ? '#AAA' : '#444';
   const divider = isDark ? 'rgba(85, 85, 85, 0.35)' : '#C2C2C2';

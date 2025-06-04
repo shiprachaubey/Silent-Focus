@@ -365,7 +365,7 @@ const ActivityCenterScreen = () => {
     <ScrollView
       style={[
         styles.container,
-        { backgroundColor: isDark ? '#111' : '#f9f9f9' },
+        { backgroundColor: isDark ? '#111' : '#ffffff' },
       ]}
       contentContainerStyle={styles.scrollContent}
     >
@@ -463,7 +463,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingTop: 40,
-    paddingBottom: 20,
+    paddingBottom: 40,
   },
   title: {
     fontSize: 20,

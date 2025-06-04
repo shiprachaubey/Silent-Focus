@@ -9,6 +9,7 @@ import WelcomeScreen3 from '../screens/Welcome3Screen';
 import PermissionScreen from '../screens/PermissionScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MainTabs from '../MainTabs';
+//import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ const AppNavigator = () => {
  <Stack.Screen name="Permission" component={PermissionScreen} options={{ headerShown: false }} />
   <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
    <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+   
 </Stack.Navigator>
 
     </NavigationContainer>

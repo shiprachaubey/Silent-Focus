@@ -81,10 +81,7 @@ const LoginScreen = () => {
                   </TouchableOpacity>
                 </View>
 
-                <Text style={{ fontSize: 14, color: subTextColor, marginBottom: 16 }}>
-                  {isLogin ? 'Please login to continue' : 'Create your account to get started'}
-                </Text>
-
+               
                 <View style={[styles.inputBox, { backgroundColor: inputBg }]}>
                   <Mail color={orange} style={styles.inputIcon} />
                   <TextInput
@@ -129,11 +126,23 @@ const LoginScreen = () => {
                   </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.loginButton} onPress={() => !isLogin && setModalVisible(true)}>
-                  <Text style={styles.loginButtonText}>
-                    {isLogin ? 'Login' : 'Verify and Register'}
-                  </Text>
-                </TouchableOpacity>
+              <TouchableOpacity
+  style={styles.loginButton}
+  onPress={() => {
+    if (isLogin) {
+      // Login clicked
+      navigation.navigate('MainTabs');
+    } else {
+      // Register clicked → open modal
+      setModalVisible(true);
+    }
+  }}
+>
+  <Text style={styles.loginButtonText}>
+    {isLogin ? 'Login' : 'Verify and Register'}
+  </Text>
+</TouchableOpacity>
+
 
                 <View style={styles.dividerRow}>
                   <View style={styles.line} />
@@ -163,7 +172,7 @@ const LoginScreen = () => {
       >
         <BlurView style={styles.modalOverlay} blurType={isDark ? 'dark' : 'light'} blurAmount={10} reducedTransparencyFallbackColor="white">
               <View style={styles.modalContent}>
-            <Image source={require('../assets/images/mail.png')} style={{ width: 64, height: 64, marginBottom: 16 }} />
+            <Image source={require('../assets/images/tts.png')} style={{ width: 64, height: 64, marginBottom: 16 }} />
             <Text style={{ fontSize: 20, fontWeight: '600', marginBottom: 6 }}>Verify  your account</Text>
             <Text style={{ fontSize: 14, color: '#555', textAlign: 'center', marginBottom: 4 }}>
               Enter 4 digits verification code we have sent to
@@ -187,15 +196,21 @@ const LoginScreen = () => {
               ))}
             </View>
 
-            <TouchableOpacity onPress={() => {}}>
-              <Text style={{ color: orange, marginBottom: 16 }}>RESEND CODE</Text>
-            </TouchableOpacity>
+           <TouchableOpacity
+  style={[styles.loginButton, { width: '100%' }]}
+  onPress={() => {
+    setModalVisible(false);
+    setTimeout(() => {
+      navigation.navigate('MainTabs');
+    }, 100);
+  }}
+>
+  <Text style={styles.loginButtonText}>Verify and Register</Text>
+</TouchableOpacity>
 
-            <TouchableOpacity style={[styles.loginButton, { width: '100%' }]} 
-             onPress={handleVerifyAndRegister}
-            >
-              <Text style={styles.loginButtonText}>Verify and Register</Text>
-            </TouchableOpacity>
+
+ 
+
           </View>
         </BlurView>
       </Modal>
@@ -296,7 +311,7 @@ subheading: {
   },
  inputBox: {
 backgroundColor: 'rgba(85, 85, 85, 0.12)',
-
+ 
   borderRadius: 16,
   flexDirection: 'row',
   alignItems: 'center',

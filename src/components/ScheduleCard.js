@@ -1,48 +1,57 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import ClockIcon from '../assets/svgs/clock';
 import Toggle from '../assets/svgs/Toggle';
-
+import LinearGradient from 'react-native-linear-gradient';
 
 const ScheduleCard = () => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
   const toggleSwitch = () => setIsEnabled(prev => !prev);
 
   return (
+    <View style={[styles.container]}>
+      <Text style={[styles.title, { color: isDark ? 'white' : '#1C1C1C' }]}>SET A SCHEDULE</Text>
+      <Text style={[styles.description, { color: isDark ? '#FAFAFA' : '#1C1C1C' }]}>
+        Have the Silence Focus turn on automatically at a set time
+      </Text>
 
-    <View style={styles.container}>
-  <Text style={styles.title}>SET A SCHEDULE</Text>
-  <Text style={styles.description}>
-    Set to turn on automatically at a set time
-  </Text>
+      <View style={[styles.card, { backgroundColor: isDark ? '#1C1C1C' : '#5555551F' }]}>
+        <View style={styles.cardContent}>
+          <ClockIcon />
+          <View style={styles.timeBlock}>
+            <Text style={[styles.timeRange, { color: isDark ? 'white' : '#1C1C1C' }]}>
+              09:00 AM - 05:00 PM
+            </Text>
 
-  <View style={styles.card}>
-    <View style={styles.cardContent}>
-      <ClockIcon />
-      <View style={styles.timeBlock}>
-        <Text style={styles.timeRange}>09:00 AM - 05:00 PM</Text>
+            <View style={styles.labelBlock}>
+              <Text style={[styles.everyday, { color: isDark ? 'rgba(250,250,250,0.45)' : '#555' }]}>
+                Everyday
+              </Text>
 
-        {/* aligned Everyday + line + Add Schedule */}
-        <View style={styles.labelBlock}>
-          <Text style={styles.everyday}>Everyday</Text>
+              <View
+                style={[
+                  styles.dividerLine,
+                  { backgroundColor: isDark ? 'rgba(85, 85, 85, 0.35)' : '#D9D9D9' },
+                ]}
+              />
 
-        <View style={styles.dividerLine} />
+              <Text style={[styles.addSchedule, { color: '#D6721E' }]}>
+                Add Schedule  ＋
+              </Text>
+            </View>
+          </View>
 
-
-          <Text style={styles.addSchedule}>Add Schedule  ＋</Text>
+          <TouchableOpacity onPress={toggleSwitch} style={styles.toggleWrapper}>
+            <Toggle isOn={isEnabled} />
+          </TouchableOpacity>
         </View>
       </View>
 
-     <TouchableOpacity onPress={toggleSwitch} style={styles.toggleWrapper}>
-  <Toggle isOn={isEnabled} />
-</TouchableOpacity>
-
     </View>
-  </View>
-</View>
-
   );
 };
 
@@ -51,25 +60,41 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 20,
   },
+  circleWrapper: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  outerCircle: {
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  innerCircle: {
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeText: {
+    color: '#fff',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8,
+    fontFamily: 'Roboto',
+  },
   dividerLine: {
-  width: 255,
-  height: 1,
-  backgroundColor: 'rgba(85, 85, 85, 0.35)',
-  marginVertical: 4,
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.25,
-  shadowRadius: 4,
-  elevation: 2, // Android drop-shadow
-},
-toggleWrapper: {
-  marginTop: 4, 
-  alignSelf: 'flex-start', 
-},
-
-
+    width: 255,
+    height: 1,
+    marginVertical: 4,
+  },
+  toggleWrapper: {
+    marginTop: 4,
+    alignSelf: 'flex-start',
+  },
   title: {
-    color: 'white',
     fontSize: 13,
     fontFamily: 'Roboto',
     fontWeight: '600',
@@ -77,14 +102,12 @@ toggleWrapper: {
     marginBottom: 6,
   },
   description: {
-    color: '#FAFAFA',
     fontSize: 13,
     fontFamily: 'Roboto',
     fontWeight: '400',
     marginBottom: 12,
   },
   card: {
-    backgroundColor: '#1C1C1C',
     borderRadius: 20,
     padding: 18,
   },
@@ -93,38 +116,29 @@ toggleWrapper: {
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-
   timeRange: {
     fontSize: 16,
-    color: 'white',
     fontWeight: '600',
     fontFamily: 'Roboto',
   },
-
   labelBlock: {
-  marginTop: 4,
-},
-
-everyday: {
-  color: 'rgba(250, 250, 250, 0.45)',
-  fontSize: 13,
-  fontFamily: 'Roboto',
-  marginBottom: 6,
-},
-
-addSchedule: {
-  color: '#D6721E',
-  fontSize: 13,
-  fontWeight: '500',
-  fontFamily: 'Roboto',
-  marginTop: 6,
-},
-
-timeBlock: {
-  flex: 1,
-  marginLeft: 14,
-},
-
+    marginTop: 4,
+  },
+  everyday: {
+    fontSize: 13,
+    fontFamily: 'Roboto',
+    marginBottom: 6,
+  },
+  addSchedule: {
+    fontSize: 13,
+    fontWeight: '500',
+    fontFamily: 'Roboto',
+    marginTop: 6,
+  },
+  timeBlock: {
+    flex: 1,
+    marginLeft: 14,
+  },
 });
 
 export default ScheduleCard;

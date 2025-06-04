@@ -225,7 +225,7 @@ const WelcomeScreen3 = () => {
         </Text>
 
         <Image
-          source={require('../assets/images/home.png')}
+          source={require('../assets/images/home3.png')}
           style={styles.image}
           resizeMode="contain"
         />
