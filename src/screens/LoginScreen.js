@@ -56,9 +56,9 @@ const LoginScreen = () => {
       >
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-            <BackIcon width={28} height={28} />
-          </TouchableOpacity>
-
+  <BackIcon color={isDark ? 'white' : 'black'} />
+</TouchableOpacity>
+         
           <Text style={[styles.heading, { color: textColor }]}>Go ahead and setup{'\
 '}your account</Text>
           <Text style={[styles.subheading, { color: subTextColor }]}>Sign in-up to enjoy the best experiences</Text>
@@ -151,13 +151,17 @@ const LoginScreen = () => {
                 </View>
 
                 <View style={styles.socialRow}>
-                  <TouchableOpacity style={styles.socialButton}>
-                    <Text>🟡 Google</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.socialButton}>
-                    <Text>🔵 Facebook</Text>
-                  </TouchableOpacity>
-                </View>
+  <TouchableOpacity style={styles.socialButtonModern}>
+    <Image source={require('../assets/images/Goggle.png')} style={styles.socialIconModern} />
+    <Text style={styles.socialText}>Google</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.socialButtonModern}>
+    <Image source={require('../assets/images/facebook.png')} style={styles.socialIconModern} />
+    <Text style={styles.socialText}>Facebook</Text>
+  </TouchableOpacity>
+</View>
+
               </View>
             </View>
           </View>
@@ -260,6 +264,39 @@ innerCard: {
   shadowRadius: 10,
   elevation: 8,
 },
+socialRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginTop: 12,
+},
+
+socialButtonModern: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  borderWidth: 1,
+  borderColor: '#D67D33',
+  backgroundColor: '#fff',
+  borderRadius: 32,
+  paddingVertical: 12,
+  paddingHorizontal: 20,
+  flex: 1,
+  marginHorizontal: 4,
+},
+
+socialIconModern: {
+  width: 20,
+  height: 20,
+  marginRight: 10,
+  resizeMode: 'contain',
+},
+
+socialText: {
+  fontSize: 14,
+  color: '#000',
+  fontWeight: '500',
+  marginLeft:5,
+},
+
 
 heading: {
   fontSize: 32,
@@ -284,6 +321,7 @@ subheading: {
   borderTopLeftRadius: 42,
   borderTopRightRadius: 42,
   padding: 24,
+   paddingHorizontal: 8,
 },
 
   tabRow: {
@@ -292,6 +330,10 @@ subheading: {
     borderRadius: 50,
     marginBottom: 24,
      padding: 6,
+     paddingHorizontal: 8,
+    width: '90%', // or '85%' if you want it tighter
+  alignSelf: 'center'
+     
   },
   tabButton: {
     flex: 1,
@@ -317,7 +359,7 @@ backgroundColor: 'rgba(85, 85, 85, 0.12)',
   alignItems: 'center',
   paddingHorizontal: 16,
   marginBottom: 16,
-  height: 50,
+  height: 60,
 }
 ,
   input: {
