@@ -360,6 +360,8 @@ const labels = {
   Accounts: 'Accounts',
 };
 
+
+
 const CustomTabBar = ({ state, navigation }) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();

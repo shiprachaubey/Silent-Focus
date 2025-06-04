@@ -36,7 +36,7 @@ const LoginScreen = () => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
-  const orange = '#D67D33';
+  const orange = '#B87333';
   const backgroundColor = isDark ? '#000' : '#fff';
   const textColor = isDark ? '#fff' : '#000';
   const subTextColor = isDark ? '#ccc' : '#444';

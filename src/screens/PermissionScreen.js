@@ -30,7 +30,7 @@ const PermissionScreen = () => {
   const textColor = isDark ? '#fff' : '#000';
   const subtitleColor = isDark ? '#aaa' : '#555';
   const cardColor = isDark ? '#1a1a1a' : '#f3f3f3';
-  const orange = '#D67D33';
+  const orange = '#c';
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;

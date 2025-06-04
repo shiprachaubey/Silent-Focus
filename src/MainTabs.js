@@ -96,7 +96,14 @@ const MainTabs = () => {
       tabBar={(props) => <CustomTabBar {...props} theme={colorScheme} />} // 👈 pass theme here
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ unmountOnBlur: false }} />
-      <Tab.Screen name="Missed" component={ChatScreen} options={{ unmountOnBlur: false }} />
+<Tab.Screen
+  name="Missed"
+  component={ChatScreen}
+  options={{
+    tabBarIcon: ({ focused }) => <ActivityIcon focused={focused} />,
+  }}
+/>
+
       <Tab.Screen name="Control" component={SettingsScreen} options={{ unmountOnBlur: false }} />
       <Tab.Screen name="Accounts" component={ProfileScreen} options={{ unmountOnBlur: false }} />
     </Tab.Navigator>
