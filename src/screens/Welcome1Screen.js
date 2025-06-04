@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 300,
     marginBottom: 24,
+     marginTop: -30, 
   },
   description: {
     fontSize: 16,

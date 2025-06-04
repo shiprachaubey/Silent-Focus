@@ -1,8 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -13,6 +14,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LogoutIcon from '../assets/svgs/Logout';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
@@ -24,7 +26,14 @@ const ProfileScreen = () => {
   const [isCalendarSynced, setIsCalendarSynced] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+const [phoneNumber, setPhoneNumber] = useState('');
+const [isEditingPhone, setIsEditingPhone] = useState(false);
+
+const phoneInputRef = useRef(null);
+
+
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
   const isDark = colorScheme === 'dark';
 
   const background = isDark ? '#111' : '#fff';
@@ -55,7 +64,34 @@ const ProfileScreen = () => {
           <Separator divider={divider} />
           <Field label="Email" value="jesus722481@gmail.com" textColor={text} />
           <Separator divider={divider} />
-          <Field label="Phone" value="+  Add Phone Number" color="#D6721E" />
+        <View style={styles.fieldRow}>
+  <View style={styles.fieldRow}>
+  <View style={styles.rowHeader}>
+    <Text style={[styles.label, { color: text }]}>Phone</Text>
+    {isEditingPhone ? (
+      <TextInput
+        ref={phoneInputRef}
+        value={phoneNumber}
+        onChangeText={setPhoneNumber}
+        onBlur={() => setIsEditingPhone(false)}
+        autoFocus
+        keyboardType="phone-pad"
+        style={[styles.value, { color: text, padding: 0 }]}
+        placeholder="+ Add Phone Number"
+        placeholderTextColor="#D6721E"
+      />
+    ) : (
+      <Pressable onPress={() => setIsEditingPhone(true)}>
+        <Text style={[styles.value, { color: phoneNumber ? text : '#D6721E' }]}>
+          {phoneNumber || '+ Add Phone Number'}
+        </Text>
+      </Pressable>
+    )}
+  </View>
+</View>
+
+</View>
+
         </Section>
 
         {/* Calendar Settings */}
@@ -102,7 +138,8 @@ const ProfileScreen = () => {
 
         {/* Logout */}
         <View style={styles.logoutContainer}>
-          <TouchableOpacity activeOpacity={0.9}>
+         <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.navigate('Logo')}>
+
             <LinearGradient
               colors={['#B87333', '#B06E31', '#523317']}
               start={{ x: 0, y: 0.5 }}
