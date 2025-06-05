@@ -1,3 +1,4 @@
+
 // import React, { useRef, useEffect } from 'react';
 // import {
 //   View,
@@ -16,22 +17,14 @@
 //   const colorScheme = useColorScheme();
 //   const navigation = useNavigation();
 
-//   const fadeAnim = useRef(new Animated.Value(0)).current;
-//   const slideUp = useRef(new Animated.Value(20)).current;
+//   const animation = useRef(new Animated.Value(0)).current;
 
 //   useEffect(() => {
-//     Animated.parallel([
-//       Animated.timing(fadeAnim, {
-//         toValue: 1,
-//         duration: 800,
-//         useNativeDriver: true,
-//       }),
-//       Animated.timing(slideUp, {
-//         toValue: 0,
-//         duration: 800,
-//         useNativeDriver: true,
-//       }),
-//     ]).start();
+//     Animated.timing(animation, {
+//       toValue: 1,
+//       duration: 800,
+//       useNativeDriver: true,
+//     }).start();
 
 //     const timeout = setTimeout(() => {
 //       navigation.replace('Permission');
@@ -53,28 +46,27 @@
 
 //       <Animated.View
 //         style={[
-//           styles.content,
+//           styles.animatedContent,
 //           {
-//             opacity: fadeAnim,
-//             transform: [{ translateY: slideUp }],
+//             opacity: animation,
+//             transform: [{ scale: animation }],
 //           },
 //         ]}
 //       >
 //         <Text style={[styles.title, { color: textColor }]}>
-//       You Stay in {'\n'}Control
+//           You Stay in {'\n'}Control
 //         </Text>
 
 //         <Image
-//           source={require('../assets/images/home.png')}
+//           source={require('../assets/images/home3.png')}
 //           style={styles.image}
 //           resizeMode="contain"
 //         />
 
 //         <Text style={[styles.description, { color: descColor }]}>
-//          Customize silent zones, set response messages, and view missed notifications – all without compromising your privacy.
+//           Customize silent zones, set response messages, and view missed notifications – all without compromising your privacy.
 //         </Text>
 
-//         {/* Dot section with conditional gradient glow */}
 //         <View style={styles.dotsWrapper}>
 //           {colorScheme === 'dark' && (
 //             <LinearGradient
@@ -96,12 +88,14 @@
 //   );
 // };
 
+// export default WelcomeScreen3;
+
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,
 //     justifyContent: 'center',
 //   },
-//   content: {
+//   animatedContent: {
 //     alignItems: 'center',
 //     paddingHorizontal: 24,
 //     flex: 1,
@@ -110,15 +104,15 @@
 //   title: {
 //     fontSize: 32,
 //     fontWeight: 'bold',
-//     textAlign: 'left',
-//     alignSelf: 'flex-start',
-//     marginBottom: 100,
+//     textAlign: 'center',
+//     marginBottom: 80,
 //     fontFamily: 'Roboto',
 //   },
 //   image: {
 //     width: '90%',
 //     height: 300,
 //     marginBottom: 24,
+//      marginTop: -30, 
 //   },
 //   description: {
 //     fontSize: 16,
@@ -162,10 +156,6 @@
 //     backgroundColor: '#F08A2C',
 //   },
 // });
-
-// export default WelcomeScreen3;
-
-
 import React, { useRef, useEffect } from 'react';
 import {
   View,
@@ -175,6 +165,7 @@ import {
   Animated,
   useColorScheme,
   Image,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
@@ -183,7 +174,6 @@ import { useNavigation } from '@react-navigation/native';
 const WelcomeScreen3 = () => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
-
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -192,66 +182,65 @@ const WelcomeScreen3 = () => {
       duration: 800,
       useNativeDriver: true,
     }).start();
-
-    const timeout = setTimeout(() => {
-      navigation.replace('Permission');
-    }, 2000);
-
-    return () => clearTimeout(timeout);
   }, []);
 
   const backgroundColor = colorScheme === 'dark' ? '#000' : '#fff';
   const textColor = colorScheme === 'dark' ? '#fff' : '#000';
   const descColor = colorScheme === 'dark' ? '#ccc' : '#444';
 
+  const handleTap = () => {
+    navigation.replace('Permission');
+  };
+
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor }]}>
-      <StatusBar
-        backgroundColor={backgroundColor}
-        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
-      />
-
-      <Animated.View
-        style={[
-          styles.animatedContent,
-          {
-            opacity: animation,
-            transform: [{ scale: animation }],
-          },
-        ]}
-      >
-        <Text style={[styles.title, { color: textColor }]}>
-          You Stay in {'\n'}Control
-        </Text>
-
-        <Image
-          source={require('../assets/images/home3.png')}
-          style={styles.image}
-          resizeMode="contain"
+    <TouchableWithoutFeedback onPress={handleTap}>
+      <SafeAreaView style={[styles.container, { backgroundColor }]}>
+        <StatusBar
+          backgroundColor={backgroundColor}
+          barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
         />
 
-        <Text style={[styles.description, { color: descColor }]}>
-          Customize silent zones, set response messages, and view missed notifications – all without compromising your privacy.
-        </Text>
+        <Animated.View
+          style={[
+            styles.animatedContent,
+            {
+              opacity: animation,
+              transform: [{ scale: animation }],
+            },
+          ]}
+        >
+          <Text style={[styles.title, { color: textColor }]}>
+            You Stay in {'\n'}Control
+          </Text>
 
-        <View style={styles.dotsWrapper}>
-          {colorScheme === 'dark' && (
-            <LinearGradient
-              colors={['rgba(184, 115, 51, 0)', 'rgba(184, 115, 51, 0.08)']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.gradientGlow}
-            />
-          )}
+          <Image
+            source={require('../assets/images/home3.png')}
+            style={styles.image}
+            resizeMode="contain"
+          />
 
-          <View style={styles.dots}>
-            <View style={styles.dot} />
-            <View style={styles.dot} />
-            <View style={styles.activeDot} />
+          <Text style={[styles.description, { color: descColor }]}>
+            Customize silent zones, set response messages, and view missed notifications – all without compromising your privacy.
+          </Text>
+
+          <View style={styles.dotsWrapper}>
+            {colorScheme === 'dark' && (
+              <LinearGradient
+                colors={['rgba(184, 115, 51, 0)', 'rgba(184, 115, 51, 0.08)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradientGlow}
+              />
+            )}
+            <View style={styles.dots}>
+              <View style={styles.dot} />
+              <View style={styles.dot} />
+              <View style={styles.activeDot} />
+            </View>
           </View>
-        </View>
-      </Animated.View>
-    </SafeAreaView>
+        </Animated.View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -279,7 +268,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 300,
     marginBottom: 24,
-     marginTop: -30, 
+    marginTop: -30,
   },
   description: {
     fontSize: 16,

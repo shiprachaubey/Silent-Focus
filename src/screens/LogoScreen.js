@@ -199,7 +199,7 @@ const LogoScreen = () => {
             x="0"
             y="35"
           >
-            Silent Focus
+            Silence Focus
           </SvgText>
         </Svg>
       </Animated.View>
