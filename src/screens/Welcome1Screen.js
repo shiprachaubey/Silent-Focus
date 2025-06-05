@@ -55,7 +55,7 @@ const WelcomeScreen1 = () => {
         ]}
       >
         <Text style={[styles.title, { color: textColor }]}>
-          TAKE BACK{'\n'}YOUR CONTROL
+          TAKE BACK{'\n'} CONTROL
         </Text>
 
         <Image
