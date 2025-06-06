@@ -53,7 +53,7 @@ const WelcomeScreen3 = () => {
           ]}
         >
           <Text style={[styles.title, { color: textColor }]}>
-            You Stay in {'\n'}Control
+           Stay in {'\n'}Control
           </Text>
 
           <Image

@@ -19,6 +19,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from '@react-native-community/blur';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-dimensions';
+
 
 import PasswordIcon from '../assets/svgs/Password';
 import BackIcon from '../assets/svgs/Back';

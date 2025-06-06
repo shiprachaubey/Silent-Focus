@@ -1,4 +1,5 @@
-package com.silent_focus
+package com.silencefocus
+
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

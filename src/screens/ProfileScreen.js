@@ -16,6 +16,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import LogoutIcon from '../assets/svgs/Logout';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 
 const { width } = Dimensions.get('window');
 
@@ -218,85 +220,85 @@ const Separator = ({ divider }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
-    paddingHorizontal: 20,
+    paddingTop: hp('1.5%'),
+    paddingHorizontal: wp('5%'),
   },
   scrollContent: {
-    paddingBottom: 140,
-    paddingTop: 30,
+    paddingBottom: hp('16%'),
+    paddingTop: hp('3%'),
   },
   header: {
-    fontSize: 20,
+    fontSize: wp('5.5%'),
     fontWeight: '600',
     color: '#D6721E',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: hp('2.5%'),
   },
   section: {
-    marginBottom: 25,
+    marginBottom: hp('3%'),
   },
   sectionTitle: {
-    fontSize: 13,
+    fontSize: wp('3.2%'),
     fontWeight: '600',
     color: '#888',
-    marginBottom: 10,
+    marginBottom: hp('1.2%'),
   },
   sectionBox: {
     width: '100%',
-    maxWidth: 335,
+    maxWidth: wp('90%'),
     alignSelf: 'center',
-    borderRadius: 17,
-    padding: 16,
+    borderRadius: wp('4.5%'),
+    padding: wp('4%'),
     justifyContent: 'center',
   },
   fieldRow: {
-    marginBottom: 10,
+    marginBottom: hp('1.2%'),
   },
   rowHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   label: {
-    fontSize: 14,
+    fontSize: wp('3.5%'),
     fontWeight: '400',
   },
   value: {
-    fontSize: 14,
+    fontSize: wp('3.5%'),
     fontWeight: '400',
   },
   separator: {
     height: 1,
-    marginVertical: 4,
+    marginVertical: hp('0.5%'),
   },
   disconnect: {
     color: '#D6721E',
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: wp('3.2%'),
     fontWeight: '600',
-    marginTop: 6,
+    marginTop: hp('0.8%'),
   },
   providerText: {
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: wp('3.2%'),
     fontWeight: '400',
-    marginTop: 2,
+    marginTop: hp('0.3%'),
   },
   syncNow: {
     color: '#D6721E',
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: wp('3.2%'),
     fontWeight: '600',
-    marginTop: 6,
+    marginTop: hp('0.8%'),
   },
   logoutContainer: {
     alignItems: 'flex-end',
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: hp('1%'),
   },
   logoutBtn: {
-    width: 151,
-    height: 47,
-    borderRadius: 42,
+    width: wp('40%'),
+    height: hp('6%'),
+    borderRadius: wp('10%'),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -307,9 +309,9 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: wp('4%'),
     fontWeight: '600',
-    marginLeft: 6,
+    marginLeft: wp('1.5%'),
   },
   modalBackdrop: {
     flex: 1,
@@ -318,26 +320,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalBox: {
-    width: '80%',
-    borderRadius: 12,
-    padding: 20,
+    width: wp('80%'),
+    borderRadius: wp('3%'),
+    padding: wp('5%'),
   },
   modalTitle: {
-    fontSize: 16,
+    fontSize: wp('4.3%'),
     fontWeight: '400',
-    marginBottom: 12,
+    marginBottom: hp('1.5%'),
     textAlign: 'center',
   },
   optionBtn: {
-    paddingVertical: 10,
+    paddingVertical: hp('1.2%'),
     borderBottomWidth: 1,
     borderBottomColor: '#444',
   },
   optionText: {
     color: '#D6721E',
-    fontSize: 14,
+    fontSize: wp('3.5%'),
     textAlign: 'center',
   },
 });
+
 
 export default ProfileScreen;
